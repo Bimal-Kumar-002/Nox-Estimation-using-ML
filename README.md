@@ -12,7 +12,7 @@ there is a strong need to reduce the NOx emission from Thermal Power Plant.
 In recent time data-driven technology is used by the many Country across the globe to analyses the 
 data and find a more effective way to minimize the NOx emission from the Thermal Power Plant.
 We have collected the data from 410 MW Thermal Power Plant under the supervision of the expert 
-in this area. We have used data visualization technique to analyses the relationship between the 
+from this area. We have used data visualization technique to analyses the relationship between the 
 various dependent variable and target variable and the relationship among the various dependent 
 variable. In the last 3 years, Bosting algorithm achieved popularity due to its robustness.
 One of the very popular Boosting algorithms is LightGBM. It was developed by the Microsoft in 
