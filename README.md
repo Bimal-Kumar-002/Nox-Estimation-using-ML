@@ -17,6 +17,5 @@ various dependent variable and target variable and the relationship among the va
 variable. In the last 3 years, Bosting algorithm achieved popularity due to its robustness.
 One of the very popular Boosting algorithms is LightGBM. It was developed by the Microsoft in 
 2017, It used the histogram method due to which it is capable to handle High dimensional data. I 
-used this framework for the prediction of NOx emission, I develop the dashboard to analyse the 
-impact of the NOx parameters. 
+used this for the prediction of NOx emission.
 Keywords: Machine Learning, LightGBM, Data Visualization, Dashboard </h3>
