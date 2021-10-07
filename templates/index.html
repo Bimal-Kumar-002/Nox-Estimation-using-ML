@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html >
+  <!--From https://codepen.io/frytyler/pen/EGdtg-->
+  <head>
+    <meta charset="UTF-8">
+    <title>Thermal Nox prediction  API</title>
+    <link rel="stylesheet" type="text/css" href=".. static//style.css" >
+    
+  </head>
+  <body>
+    <div class="login">
+      <center>
+        <h2> Nitorogen Dioxide Prediction Dashboard </h2>
+      </center>
+      <center>
+        <h2> Thermal power plant </h2>
+      </center>
+      <!-- HTML Table-->
+      <center>
+        <h3> Features Name And Unit</h3>
+      </center>
+      <center>
+        <table border="2" cellspacing="0" cellpading="400" style="text-align: center;" 
+        style="background-color: dimgrey; color: indigo;">
+          <tr>
+            <th style="color: cornflowerblue;">Features name</th>
+            <th class="units">Units</th>
+            <th style="color: cornflowerblue;">Features name</th>
+            <th class="units">Units</th>
+            <th style="color: cornflowerblue;">Features name</th>
+            <th class="units">Units</th>
+            <th style="color: cornflowerblue;">Features name</th>
+            <th class="units">Units</th>
+            <th style="color: cornflowerblue;">Features name</th>
+            <th class="units">Units</th>
+          </tr>
+          <tr>
+            <td style="color: cornflowerblue;">Boiler load</td>
+            <td class="units">MW</td>
+            <td style="color: cornflowerblue;">PAPH -A O/L Temp</td>
+            <td class="units"><sup>o</sup>C</td>
+            <td style="color: cornflowerblue;">PAPH -B O/L Temp</td>
+            <td class="units"><sup>o</sup>C</td>
+            <td style="color: cornflowerblue;">SAPH -A O/L Temp</td>
+            <td class="units"><sup>o</sup>C</td>
+            <td style="color: cornflowerblue;">SAPH -B O/L Temp</td>
+            <td class="units"><sup>o</sup>C</td>
+          </tr>
+          <tr>
+            <td style="color: cornflowerblue;">Total PA Flow</td>
+            <td class="units">T/Hr </td>
+            <td style="color: cornflowerblue;">Total Sec Air Flow</td>
+            <td class="units">T/Hr</td>
+            <td style="color: cornflowerblue;">Total Air Flow</td>
+            <td class="units">T/Hr</td>
+            <td style="color: cornflowerblue;">Total Coal Flow</td>
+            <td class="units">T/Hr</td>
+            <td style="color: cornflowerblue;">oxygen content in the flue gas (L)</td>
+            <td class="units">%</td>
+          </tr>
+          <tr>
+            <td style="color: cornflowerblue;">oxygen content in the flue gas (L).1</td>
+            <td class="units">%</td>
+            <td style="color: cornflowerblue;">oxygen content in the flue gas (R)</td>
+            <td class="units">%</td>
+            <td style="color: cornflowerblue;">oxygen content in the flue gas (R).1</td>
+            <td class="units">%</td>
+            <td style="color: cornflowerblue;">Furnace Press</td>
+            <td class="units">mmwc</td>
+            <td style="color: cornflowerblue;">Excess Air</td>
+            <td class="units">%</td>
+          </tr>
+          <tr>
+            <td style="color: cornflowerblue;">BURNER TILT COR 1 POS FDBK</td>
+            <td class="units" >%</td>
+            <td style="color: cornflowerblue;">BURNER TILT COR 2 POS FDBK</td>
+            <td class="units">%</td>
+            <td style="color: cornflowerblue;">BURNER TILT COR 3 POS FDBK</td>
+            <td class="units">%</td>
+            <td style="color: cornflowerblue;">BURNER TILT COR 4 POS FDBK</td>
+            <td class="units">%</td>
+          </tr>
+        </table>
+      </center>
+      <h3 id="user_input"> User Input: </h3>
+      <!-- Main Input For Receiving Query to our ML -->
+      <form action="{{ url_for('predict')}}"method="post">
+        <label style="color: cornflowerblue;">Boiler-load:</label>
+        <input style="width: 300px;" type="float" name="Boiler-load" placeholder="Boiler-load" required="required" />
+
+        <label style="color: cornflowerblue;">PAPH -A O/L Temp:</label>
+        <input style="width: 300px;" type="float" name="PAPH -A O/L Temp" placeholder="PAPH -A O/L Temp" required="required" />
+        
+        <label style="color: cornflowerblue;">PAPH -B O/L Temp:</label>
+        <input  style="width: 300px;" type="float" name="PAPH -B O/L Temp" placeholder="PAPH -B O/L Temp" required="required" />
+        <br>
+        <label style="color: cornflowerblue;"> SAPH -A O/L Temp: </label>
+        <input style="width: 243px;"type="float" name="SAPH -A O/L Temp" placeholder="SAPH -A O/L Temp" required="required" />
+        <label style="color: cornflowerblue;">SAPH -B O/L Temp:</label>
+        <input style="width: 298px;" type="float" name="SAPH -B O/L Temp" placeholder="SAPH -B O/L Temp" required="required" />
+
+        <label style="color: cornflowerblue;">Total PA Flow: </label>
+        <input style="width: 337.5px;" type="float" name="Total PA Flow" placeholder="Total PA Flow" required="required" />
+        <br>
+        <label style="color: cornflowerblue;"> Total Sec Air Flow : </label>
+        <input style="width: 247.80px;" type="float" name="Total Sec Air Flow" placeholder="Total Sec Air Flow" required="required" />
+
+        <label style="color: cornflowerblue;">Total Air Flow: </label>
+        <input style="width: 334px;" type="float" name="Total Air Flow" placeholder="Total Air Flow" required="required" />
+        <label style="color:cornflowerblue">Total Coal Flow: </label>
+        <input style="width: 326px;" type="float" name="Total Coal Flow" placeholder="Total Coal Flow" required="required" />
+        <br>
+        <label style="color: cornflowerblue;">oxygen content in the flue gas L: </label>
+        <input style="width: 166px;" type="float" name="oxygen content in the flue gas L" placeholder="oxygen content in the flue gas L" required="required" />
+        
+        <label style="color: cornflowerblue;">oxygen content in the flue gas (L).1: </label>
+        <input style="width: 200px;" type="float" name="oxygen content in the flue gas L1" placeholder="oxygen content in the flue gas L1" required="required" />
+        
+        <label style="color: cornflowerblue;">oxygen content in the flue gas R : </label>
+        <input style="width: 218px;" type="float" name="oxygen content in the flue gas R" placeholder="oxygen content in the flue gas R" required="required" />
+        <br>
+        <label style="color: cornflowerblue;">oxygen content in the flue gas (R).1: </label>
+        <input style="width: 143px;" type="float" name="oxygen content in the flue gas R1" placeholder="oxygen content in the flue gas R1" required="required" />
+        
+        <label style="color: cornflowerblue;">Furnace Press: </label>
+        <input style="width: 339px;" type="float" name="Furnace Press" placeholder="Furnace Press" required="required" />
+
+        <label style="color: cornflowerblue;">Excess Air: </label>
+        <input style="width: 360px;" type="float" name="Excess Air" placeholder="Excess Air" required="required" />
+        <br>
+        <label style="color: cornflowerblue;">BURNER TILT COR 1 POS FDBK: </label>
+        <input style="width: 142.5px;" type="float" name="BURNER TILT COR 1 POS FDBK" placeholder="BURNER TILT COR 1 POS FDBK" required="required" />
+        <label style="color: cornflowerblue;">BURNER TILT COR 2 POS FDBK: </label>
+        <input style="width: 198px;" type="float" name="BURNER TILT COR 2 POS FDBK" placeholder="BURNER TILT COR 2 POS FDBK" required="required" />
+        <label style="color: cornflowerblue;">BURNER TILT COR 3 POS FDBK: </label>
+        <input style="width: 198px;" type="float" name="BURNER TILT COR 3 POS FDBK" placeholder="BURNER TILT COR 3 POS FDBK" required="required" />
+        <br>
+        <label style="color: cornflowerblue;">BURNER TILT COR 4 POS FDBK: </label>
+        <input style="width: 142px;" type="float" name="BURNER TILT COR 4 POS FDBK" placeholder="BURNER TILT COR 4 POS FDBK" required="required" />
+        <br>
+        <label ">Click on button<label>
+        <button style="text-align: center; color: rgb(0, 100, 92); fill: rgb(8, 179, 8); text-emphasis: 25;"
+         type="submit" class="btn btn-primary btn-block btn-large">Predict </button>
+      </form>
+      <br>
+      {{ prediction_text }}
+    </div>
+  </body>
+</html>

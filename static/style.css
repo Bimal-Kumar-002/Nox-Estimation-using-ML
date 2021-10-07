@@ -1,0 +1,23 @@
+*{
+padding: 0;
+margin: 0;
+
+}
+h1{
+    color:royalblue;
+}
+h2{
+    color:royalblue;
+    ;
+}
+h4{
+    color:royalblue;
+
+}
+.units{
+    color: rgb(12, 68, 100);
+}
+#user_input{
+    color: rgb(12, 139, 212);
+}
+
