@@ -15,7 +15,7 @@ We have collected the data from 410 MW Thermal Power Plant under the supervision
 in this area. We have used data visualization technique to analyses the relationship between the 
 various dependent variable and target variable and the relationship among the various dependent 
 variable. In the last 3 years, bosting algorithm achieved popularity due to its robustness.
-One of the very popular Boosting algorithms is LightGBM. It was developed by the Microsoft in 
+One of the very popular boosting algorithms is LightGBM. It was developed by the Microsoft in 
 2017, It used the histogram method due to which it is capable to handle High dimensional data. I 
 used this framework for the prediction of NOx emission, I develop the dashboard to analyse the 
 impact of the NOx parameters. 
